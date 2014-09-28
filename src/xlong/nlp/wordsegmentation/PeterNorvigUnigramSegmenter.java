@@ -1,8 +1,8 @@
 package xlong.nlp.wordsegmentation;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -51,17 +51,17 @@ public class PeterNorvigUnigramSegmenter implements WordSegmenter {
 
 	class PDist {
 		private HashMap<String, Long> gramMap;
-		private final String unigramFile = "src/xlong/nlp/wordsegmentation/count_1w.txt";
+		private final String unigramResouse = "count_1w.txt";
 		private final long n = 1024908267229l;
 
 		PDist(){
 			gramMap = new HashMap<String, Long>();
-			read(unigramFile);
+			read(unigramResouse);
 		}
-		private void read(String filename) {
+		private void read(String fileResourse) {
 			BufferedReader in;
 			try {
-				in = new BufferedReader(new FileReader(filename));
+				in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(fileResourse)));
 				String line;
 				while ((line = in.readLine()) != null) {
 					String[] strs = line.split("\t");
