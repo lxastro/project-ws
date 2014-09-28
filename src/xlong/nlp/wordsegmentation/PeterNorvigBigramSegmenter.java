@@ -13,7 +13,7 @@ public class PeterNorvigBigramSegmenter implements WordSegmenter {
 	private PDist pDist;
 	private HashMap<String, Pair> segment2Memo;
 	
-	public PeterNorvigBigramSegmenter() {
+	PeterNorvigBigramSegmenter() {
 		pDist = new PDist();
 		segment2Memo = new HashMap<String, Pair>();
 	}
@@ -23,6 +23,7 @@ public class PeterNorvigBigramSegmenter implements WordSegmenter {
 		if (text == null) {
 			return null;
 		}
+		segment2Memo = new HashMap<String, Pair>();
 		return segment2(text, "<S>").words;
 	}
 	

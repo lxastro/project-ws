@@ -12,13 +12,20 @@ public class PeterNorvigUnigramSegmenter implements WordSegmenter {
 	private PDist pDist;
 	private HashMap<String, Vector<String>> segmentMemo;
 	
-	public PeterNorvigUnigramSegmenter() {
+	PeterNorvigUnigramSegmenter() {
 		pDist = new PDist();
 		segmentMemo = new HashMap<String, Vector<String>>();
 	}
 
 	@Override
 	public Vector<String> segment(String text) {
+		return segment(text, true);
+	}
+	
+	private Vector<String> segment(String text, boolean delete) {
+		if (delete) {
+			segmentMemo = new HashMap<String, Vector<String>>();
+		}
 		if (text == null) {
 			return null;
 		}
@@ -30,7 +37,7 @@ public class PeterNorvigUnigramSegmenter implements WordSegmenter {
 		for (int i = 1; i <= Math.min(MAXWORDLENGTH, text.length()); i++) {
 			Vector<String> candidate = new Vector<String>();
 			candidate.add(text.substring(0, i));
-			candidate.addAll(segment(text.substring(i)));
+			candidate.addAll(segment(text.substring(i), false));
 			double prob = pwords(candidate);
 			if (prob > maxProb) {
 				maxProb = prob;
@@ -39,6 +46,7 @@ public class PeterNorvigUnigramSegmenter implements WordSegmenter {
 		}
 		segmentMemo.put(text, words);
 		return words;
+		
 	}
 	
 	private double pwords(Vector<String> words) {

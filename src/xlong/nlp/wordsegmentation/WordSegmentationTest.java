@@ -19,7 +19,7 @@ public class WordSegmentationTest {
 		"faroutintheunchartedbackwatersoftheunfashionableendofthewesternspiralarmofthegalaxyliesasmallunregardedyellowsun",
 	};
 	public static void main(String[] args) {
-		WordSegmenter segmenter = new PeterNorvigUnigramSegmenter();
+		WordSegmenter segmenter = WordSegmenters.getPeterNorvigUnigramSegmenter();
 		for (String str:testStrings) {
 			Vector<String> words = segmenter.segment(str);
 			for (String word:words) {
@@ -28,7 +28,7 @@ public class WordSegmentationTest {
 			System.out.println();
 		}
 		System.out.println();
-		segmenter = new PeterNorvigBigramSegmenter();
+		segmenter = WordSegmenters.getPeterNorvigBigramSegmenter();
 		for (String str:testStrings) {
 			Vector<String> words = segmenter.segment(str);
 			for (String word:words) {
