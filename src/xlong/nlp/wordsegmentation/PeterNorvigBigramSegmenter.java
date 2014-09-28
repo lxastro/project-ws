@@ -71,8 +71,8 @@ public class PeterNorvigBigramSegmenter implements WordSegmenter {
 
 	class PDist {
 		private HashMap<String, Long> gramMap;
-		private final String unigramResouse = "count_1w.txt";
-		private final String bigramResouse = "count_2w.txt";
+		private final String unigramResouse = "/data/count_1w.txt";
+		private final String bigramResouse = "/data/count_2w.txt";
 		private final long n = 1024908267229l;
 
 		PDist(){
