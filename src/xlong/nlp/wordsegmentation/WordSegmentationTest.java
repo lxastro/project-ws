@@ -36,5 +36,13 @@ public class WordSegmentationTest {
 			}
 			System.out.println();
 		}
+		segmenter = WordSegmenters.getWeightBigramSegmenter(0.8);
+		for (String str:testStrings) {
+			Vector<String> words = segmenter.segment(str);
+			for (String word:words) {
+				System.out.print(word + " ");
+			}
+			System.out.println();
+		}
 	}
 }
