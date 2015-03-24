@@ -116,7 +116,7 @@ public class WeightBigramSegmenter implements WordSegmenter {
 			}
 		}
 		double missingPWord(String word) {
-			return Math.pow(10.0, weight)/(n * Math.pow(10.0, weight * word.length()));
+			return Math.pow(10.0, weight)/(n * Math.pow(10.0, word.length()));
 		}
 	}
 }
